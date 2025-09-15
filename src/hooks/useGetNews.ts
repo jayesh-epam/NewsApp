@@ -35,7 +35,7 @@ export function useGetNews() {
     };
 
     fetchNews();
-  }, []);
+  }, [NEWS_API_ENDPOINT, NEWS_API_KEY]);
 
   return { articles, loading, error };
 }
