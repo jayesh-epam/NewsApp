@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NEWS_API_KEY, NEWS_API_URL } from "@env";
+import { NEWS_API_KEY, NEWS_API_ENDPOINT } from "@env";
 
 export type NewsArticle = {
   title: string;
@@ -18,7 +18,7 @@ export function useGetNews() {
     const fetchNews = async () => {
       try {
         const res = await fetch(
-          `${NEWS_API_URL}&apiKey=${NEWS_API_KEY}`
+          `${NEWS_API_ENDPOINT}&apiKey=${NEWS_API_KEY}`
         );
         const data = await res.json();
         console.log(data);
