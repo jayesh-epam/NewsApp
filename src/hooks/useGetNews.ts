@@ -20,7 +20,7 @@ export function useGetNews(category: string) {
     const fetchNews = async () => {
       setLoading(true);
       setError(null);
-      setArticles([]); // clear old data while fetching new category
+      setArticles([]); 
 
       try {
         const res = await fetch(
@@ -45,7 +45,7 @@ export function useGetNews(category: string) {
     fetchNews();
 
     return () => {
-      isMounted = false; // cleanup
+      isMounted = false; 
     };
   }, [category]);
 

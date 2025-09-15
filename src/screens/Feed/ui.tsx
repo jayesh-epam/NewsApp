@@ -12,7 +12,6 @@ export default function Feed({
 }: any) {
   return (
     <View style={{ flex: 1 }}>
-      {/* Category Buttons */}
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -28,7 +27,6 @@ export default function Feed({
         )}
       />
 
-      {/* News Articles */}
       <FlatList
         data={articles}
         keyExtractor={(item, index) => index.toString()}
