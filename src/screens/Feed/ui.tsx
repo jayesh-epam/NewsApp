@@ -2,6 +2,15 @@ import React from "react";
 import { FlatList, View } from "react-native";
 import NewsCard from "@/components/molecules/NewsCard";
 import Button from "@/components/atoms/Button";
+import { NewsArticle } from "@/hooks/useGetNews";
+
+type FeedProps = {
+  articles: NewsArticle[];
+  categories: { label: string; key: string }[];
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+  onArticlePress: (article: NewsArticle) => void;
+}
 
 export default function Feed({
   articles,
@@ -9,7 +18,7 @@ export default function Feed({
   selectedCategory,
   onCategoryChange,
   onArticlePress,
-}: any) {
+}: FeedProps) {
   return (
     <View style={{ flex: 1 }}>
       <FlatList

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import Feed from "./ui";
 import { NewsArticle, useGetNews } from "@/hooks/useGetNews";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "@/navigation";
 
 const categories = [
   {label: "Business", key:"business"},
@@ -10,7 +12,9 @@ const categories = [
   {label: "Sports", key:"sports"},
 ];
 
-export default function FeedContainer({ navigation }: any) {
+type Props = NativeStackScreenProps<RootStackParamList, "Feed">;
+
+export default function FeedContainer({ navigation }: Props) {
   const [category, setCategory] = useState("general");
   const { articles, loading, error } = useGetNews(category);
 

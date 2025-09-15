@@ -1,7 +1,8 @@
+import { NewsArticle } from "@/hooks/useGetNews";
 import React from "react";
 import { ScrollView, Text, Image } from "react-native";
 
-export default function Article({ article }: any) {
+export default function Article({ article }: { article: NewsArticle }) {
   return (
     <ScrollView style={{ flex: 1, padding: 16 }}>
       {article.urlToImage && (

@@ -4,10 +4,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import FeedContainer from "@/screens/Feed/container";
 import ArticleContainer from "@/screens/Article/container";
+import { NewsArticle } from "@/hooks/useGetNews";
 
 export type RootStackParamList = {
   Feed: undefined;
-  Article: { article: any };
+  Article: { article: NewsArticle };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
