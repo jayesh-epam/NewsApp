@@ -9,33 +9,45 @@ export type NewsArticle = {
   url?: string;
 };
 
-export function useGetNews() {
+export function useGetNews(category: string) {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchNews = async () => {
+      setLoading(true);
+      setError(null);
+      setArticles([]); // clear old data while fetching new category
+
       try {
         const res = await fetch(
-          `${NEWS_API_ENDPOINT}&apiKey=${NEWS_API_KEY}`
+          `${NEWS_API_ENDPOINT}&category=${category}&apiKey=${NEWS_API_KEY}`
         );
         const data = await res.json();
-        console.log(data);
-        if (data.articles) {
-          setArticles(data.articles);
-        } else {
-          setError("No articles found");
+
+        if (isMounted) {
+          if (data.articles) {
+            setArticles(data.articles);
+          } else {
+            setError("No articles found");
+          }
         }
       } catch (err: any) {
-        setError(err.message || "Something went wrong");
+        if (isMounted) setError(err.message || "Something went wrong");
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchNews();
-  }, [NEWS_API_ENDPOINT, NEWS_API_KEY]);
+
+    return () => {
+      isMounted = false; // cleanup
+    };
+  }, [category]);
 
   return { articles, loading, error };
 }
