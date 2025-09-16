@@ -1,12 +1,7 @@
 import React from "react";
 import Article from "./ui";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { NewsArticle } from "@/hooks/useGetNews";
-
-type RootStackParamList = {
-  Feed: undefined;
-  Article: { article: NewsArticle };
-};
+import { RootStackParamList } from "@/navigation";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Article">;
 
